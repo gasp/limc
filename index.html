@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>limc</title>
+<meta name="viewport" content="initial-scale=1.0">
+<meta name="apple-mobile-web-app-title" content="lightim">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<meta property="og:url" content="http://limc.freelancis.net"/>
+<meta property="og:image" content="http://limc.freelancis.net/apple-touch-icon-114x114-precomposed.png"/>
+
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-57x57-precomposed.png">
+
+
+<link rel="stylesheet" href="themes/light-edgy.css" />
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css" /> 
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="jquery.js"><\/script>')</script>
+<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script> 
+<style>
+	li.me{
+		text-align:right;
+		background-color:#e0e0e0;
+	}
+	#page-chat form{
+		padding-top:1em;
+	}
+	#page-connect #logo{
+		height:200px;
+		background:transparent url("themes/images/logo-grey.svg") no-repeat center center;
+	}
+	.topbar{
+		-moz-user-select: none;
+		-webkit-user-select: none;
+	}
+</style>
+
+<script src="local.js"></script>
+<script src="client.js"></script>
+<script src="swipedown.js"></script>
+<script src="ui.js"></script>
+<script src="debug.js"></script>
+</head>
+<body>
+<div data-role="page" id="page-connect">
+	<div data-role="content" class="content">
+		<div id="logo"></div>
+		<div data-role="collapsible-set" class="coll" data-inset="false">
+			<div data-role="collapsible" data-icon="one" data-collapsed="false"
+			data-collapsed-icon="arrow-r" and data-expanded-icon="arrow-d">
+				<h3>Connect to lightim</h3>
+				<form style="padding:10px 20px;" class="login">
+					<h3>Please sign in</h3>
+					<label for="login_user_input" class="ui-hidden-accessible">Username:</label>
+					<input type="text" name="user" placeholder="username" 
+						id="login_user_input"
+						autocapitalize="off" autocorrect="off" />
+					<label for="login_password_input" class="ui-hidden-accessible">Password:</label>
+					<input type="password" name="pass" placeholder="password" 
+						id="login_password_input"/>
+					<button type="submit" data-theme="b">Connect</button>
+				</form>
+			</div>
+			<div data-role="collapsible" data-icon="one" data-collapsed="true"
+				data-collapsed-icon="arrow-r" and data-expanded-icon="arrow-d">
+				<h3>Create an account</h3>
+				<form style="padding:10px 20px;" class="create">
+					<h3>Please sign up</h3>
+					<label for="create_user_input" class="ui-hidden-accessible">Username:</label>
+					<input type="text" name="user" placeholder="username" 
+						id="create_user_input"
+						autocapitalize="off" autocorrect="off" />
+					<label for="create_password_input" class="ui-hidden-accessible">Password:</label>
+					<input type="password" name="pass" placeholder="password" 
+						id="create_password_input"/>
+					<button type="submit" data-theme="b">Create</button>
+				</form>
+			</div>
+			
+			<p>
+				<a href="#page-debug" data-iconpos="top" data-icon="debug">debug</a>
+			</p>
+		</div>
+		</div>
+		
+	</div><!--/.content-->
+
+</div>
+
+<div data-role="page" id="page-contacts">
+	<div class="topbar" data-role="header" data-position="fixed">
+		<h1>lightim</h1>
+		<a href="#page-new" data-icon="write" class="ui-btn-right">New</a>
+	</div>
+	<div data-role="content" class="content">
+		<ul>
+			<li>loading...</li>
+		</ul>
+		(<a href="#page-debug">debug</a>) (<a href="javascript:ui.refresh();">refresh</a>)
+	</div><!--/.content-->
+</div>
+
+<div data-role="page" id="page-chat">
+	<div class="topbar" data-role="header" data-position="fixed">
+		<a href="#page-contacts" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse">Home</a>
+		<h1>lightim</h1>
+	</div>
+	<div data-role="content" class="content">
+		<ul>
+			<li>loading...</li>
+		</ul>
+		<div data-role="fieldcontain">
+			<fieldset data-role="controlgroup">
+				<form method="get" accept-charset="utf-8">
+					<label for="say_message" class="ui-hidden-accessible">Message:</label>
+					<textarea name="message" id="say_message"></textarea>
+<!--					<button type="submit" data-theme="b">Send</button>-->
+				</form>
+			</fieldset>
+		</div>
+	</div><!--/.content-->
+</div>
+
+<div data-role="page" id="page-new">
+	<div data-role="header">
+		<a href="#page-contacts" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse">Home</a>
+		<h1>new message</h1>
+	</div>
+	<div data-role="content" class="content">
+		<form method="get" accept-charset="utf-8">
+			<label for="new_dest" class="ui-hidden-accessible">Username:</label>
+			<input type="text" name="dest" placeholder="Who do you want to talk to ?" 
+				id="new_dest"
+				autocapitalize="off" autocorrect="off" />
+			<label for="new_message" class="ui-hidden-accessible">Message:</label>
+			<textarea name="message" id="new_message"></textarea>
+			<button type="submit" data-theme="b">Send</button>
+		</form>
+	</div>
+</div>
+
+<div data-role="page" id="page-debug">
+	<div data-role="header">
+		<a href="#page-contacts" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse">Home</a>
+		<h1>debug</h1>
+	</div>
+	<p><a href="#page-connect">page connect</a></p>
+	<hr>
+	<p><a href="#ping" class="action">ping</a></p>
+	<p><a href="#create" data-user="gasp" data-password="pass" class="action">create gasp/pass</a></p>
+	<p><a href="#create" data-user="bob" data-password="pass" class="action">create bob/pass</a></p>
+	<p><a href="#login" data-user="bob" data-password="pass" class="action">login bob/pass</a></p>
+	<p><a href="#tell" data-dest="gasp" data-message="Salut! t'aimes les caractères accentués ?"  class="action">tell gaspard salut ?</a></p>
+	<p><a href="#tell" data-dest="gasp" data-message="Hi, how are you doing ?"  class="action">tell hi ?</a></p>
+	<p><a href="#login" data-user="gasp" data-password="pass" class="action">login gasp/pass</a></p>
+	<p><a href="#inbox" data-user="gasp" class="action">inbox gasp/pass</a></p>
+	<p><a href="#about" data-user="gasp" class="action">about gasp</a></p>
+	<p><a href="#about" data-user="bob" class="action">about bob</a></p>
+	<p><a href="#about" data-user="alice" class="action">about alice</a></p>
+	<hr>
+	<p><a href="#reset" class="action">reset</a></p>
+	<hr>
+	<p><a href="javascript:location.reload()">reload the page</a></p>
+</div>
+
+
+
+</body>
+</html>
